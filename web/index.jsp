@@ -1,5 +1,3 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.*"%>
@@ -23,20 +21,28 @@
         <h2 align="center">Catalogo de Productos</h2>
         <table border="0" align="center" width="1000">
             <%
-                ArrayList<Producto> lista= ProductoDB.obtenerProducto();
-                int salto=0;
-                for (Producto p : lista){
-               %>
-               <th><img src="img/<%=p.getImagen()%>" width="140" height="140"><p>
-               <%=p.getNombre()%><br>
-               <%=p.getPrecio()%><p>
-               </th>
-               <%
-                
-                   
+                ArrayList<Producto> lista = ProductoDB.obtenerProducto();
+                int salto = 0;
+                for (Producto p : lista) {
+            %>
+            <th><img src="img/<%=p.getImagen()%>" width="140" height="140"><p>
+                    <%=p.getNombre()%><br>
+                    <%=p.getPrecio()%><p>
+                    <a href="">Modificar</a> //
+                    <a href="anadirCarrito.jsp?id=<%= p.getCodigoproducto()%>">Añadir</a>
+            </th>
+            <%
+                salto++;
+                if (salto == 3) {
+            %>
+            <tr>
+            <%
+                        salto = 0;
+                    }
                 }
-                %>
-            
+
+            %>
+
         </table>
     </body>
 </html>
